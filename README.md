@@ -3,6 +3,8 @@ _In this assignment you will first write an optimization algorithm to optimize a
 
 You can use all available resources for this assignment. If necessary, you can use (python) libraries. All the assignments have numerous solutions. You are free to choose libraries/frameworks that you think fits the assignments best. If you have a question regarding one of the assignments, don't hesitate to ask. I am available via email or phone.
 
+Good luck!
+
 ### Part I: Optimization Algorithms
 Assume a function $f(x)=x^2$. Assume a set of $K$ lists, $X_{1},X_{2},...X_{K}$, where each list $X_{i}$ has $N_{i}$ elements. So, the lists do not necessarily have the same lengths. The function that needs to be maximized is `R = sum(f(x[k]) for k in range(K)) mod M`, where each $x_{i}$ is one element picked from list $X_{i}$. For this assignment you can assume that all the elements from the lists are larger or equal to $1$ or smaller or equal to $10^9$. That is, $1 <= x_{i,k} <= 10^9$.
 
