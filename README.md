@@ -47,6 +47,6 @@ In this part you will write a web API, implementing the functionalities develope
 4. Create an endpoint which would be able to serve the front-end with the necessary information to plot the differences in performance between the two algorithms as a function of `num_lists`. In other words, make sure that a user on the front-end would be able to compare the performance of `efficient` and `naive` as $`K`$ increases.
 
 ### Part III: Frontend
-In this part you will write the frontend which communicates with the backend implemented in Part II. 
+In this part you will write the frontend which communicates with the backend implemented in Part II. You can use any React library component for this exercise.  
 1. Create a small interface for users to evaluate the endpoints `/optimize/efficient` and `/optimize/naive`.
 2. Create an interface to visualize the difference in performance between the `efficient` and `naive`. I.e. create an interface for the endpoint implemented in Part II exercise 4. 
