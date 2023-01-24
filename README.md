@@ -45,3 +45,8 @@ In this part you will write a web API, implementing the functionalities develope
 2. Set up and write the necessary things to build a docker container with your created application running inside. Make sure that it can be reached from outside the container using HTTP requests. Also make sure that all the dependencies are installed properly.
 3. Create some test script(s) to automate testing your codes before building and deploying your application inside the docker container. Make sure that you also include tests to verify that your created algorithms give the correct answers.
 4. Create an endpoint which would be able to serve the front-end with the necessary information to plot the differences in performance between the two algorithms as a function of `num_lists`. In other words, make sure that a user on the front-end would be able to compare the performance of `efficient` and `naive` as $`K`$ increases.
+
+### PART III: Frontend
+In this part you will write the frontend which communicates with the backend implemented in Part II. 
+1. Create a small interface for users to evaluate the endpoints `/optimize/efficient` and `/optimize/naive`.
+2. Create an interface to visualize the difference in performance between the `efficient` and `naive`. I.e. create an interface for the endpoint implemented in Part II exercise 4. 
