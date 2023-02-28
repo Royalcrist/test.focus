@@ -6,7 +6,7 @@ export interface BenchmarkRequest {
 	replications: number;
 }
 
-export interface BenchmarkData {
+export interface BenchmarkMetrics {
 	algorithm: Algorithm;
 	numLists: number;
 	numElements: number;
@@ -18,6 +18,11 @@ export interface BenchmarkData {
 	avgCpuUsage: number;
 	maxCpuUsage: number;
 	complexity: number;
+}
+
+export interface BenchmarkData {
+	naive: BenchmarkMetrics;
+	efficient: BenchmarkMetrics;
 }
 
 export interface OptimizeRequest {

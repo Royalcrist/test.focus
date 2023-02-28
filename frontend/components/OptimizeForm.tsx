@@ -4,7 +4,6 @@ import {
 	Button,
 	FormControl,
 	FormLabel,
-	Heading,
 	Input,
 	Radio,
 	RadioGroup,
@@ -42,11 +41,10 @@ const OptimizeForm: React.FC<Props> = ({ onSubmit }) => {
 		}));
 	};
 
-	const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const { value } = event.target;
+	const handleRadioChange = (nextValue: string) => {
 		setFormData(prevState => ({
 			...prevState,
-			algorithm: value as 'naive' | 'efficient',
+			algorithm: nextValue as 'naive' | 'efficient',
 		}));
 	};
 
@@ -59,10 +57,10 @@ const OptimizeForm: React.FC<Props> = ({ onSubmit }) => {
 			<Stack spacing={4}>
 				<FormControl>
 					<FormLabel>Algorithm</FormLabel>
-					<RadioGroup>
+					<RadioGroup value={formData.algorithm} onChange={handleRadioChange}>
 						<Stack spacing={5} direction="row">
-							<Radio defaultChecked onChange={handleRadioChange}>Naive</Radio>
-							<Radio onChange={handleRadioChange}>Efficient</Radio>
+							<Radio value='naive'>Naive</Radio>
+							<Radio value='efficient'>Efficient</Radio>
 						</Stack>
 					</RadioGroup>
 				</FormControl>

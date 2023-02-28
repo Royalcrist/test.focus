@@ -1,23 +1,14 @@
 import Head from 'next/head';
-import { Box, Flex, Heading, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
+import { Box, Flex, Heading, Tab, Table, TableCaption, TableContainer, TabList, TabPanel, TabPanels, Tabs, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react';
 import OptimizeForm from '@/components/OptimizeForm';
 import BenchmarkForm from '@/components/BenchmarkForm';
 import useOptimize from '@/hooks/useOptimize';
-import { Algorithm, BenchmarkData, OptimizeData, OptimizeFormData } from '@/types';
-import { useEffect, useState } from 'react';
 import { useBenchmark } from '@/hooks/useBenchmark';
 
 
 export default function Home() {
 	const { data: optimizeData, fetchData: optimizeFetchData, isLoading: optimizeIsLoading, error: optimizeError } = useOptimize();
 	const { data: benchmarkData, fetchData: benchmarkFetchData, isLoading: benchmarkIsLoading, error: benchmarkError } = useBenchmark();
-
-	useEffect(() => {
-		if (optimizeData) {
-			console.log('optimizeData', optimizeData);
-		}
-	}, [optimizeData]);
-
 
 	return (
 		<>
@@ -42,7 +33,7 @@ export default function Home() {
 				</Flex>
 
 				<Flex alignItems="center" justifyContent="center" width="100%">
-					<Tabs maxW="40rem" width="100%">
+					<Tabs maxW="50rem" width="100%">
 						<TabList>
 							<Tab>Calculate</Tab>
 							<Tab>Benchmark</Tab>
@@ -51,9 +42,65 @@ export default function Home() {
 						<TabPanels>
 							<TabPanel>
 								<OptimizeForm onSubmit={data => optimizeFetchData(data)} />
+								{optimizeData && <Box marginX={8}><Text>
+									Result: {optimizeData?.result}
+								</Text>
+									<Text>
+										Time: {optimizeData?.time}s
+									</Text></Box>}
 							</TabPanel>
 							<TabPanel>
 								<BenchmarkForm onSubmit={data => benchmarkFetchData(data)} />
+								{benchmarkData &&
+									<TableContainer>
+										<Table variant='simple'>
+											<TableCaption>Metrics between naive and efficient algorithm</TableCaption>
+											<Thead>
+												<Tr>
+													<Th>Metric type</Th>
+													<Th isNumeric>Naive</Th>
+													<Th isNumeric>Efficient</Th>
+												</Tr>
+											</Thead>
+											<Tbody>
+												<Tr>
+													<Td>Average Time</Td>
+													<Td isNumeric>{benchmarkData.naive.avgTime}</Td>
+													<Td isNumeric>{benchmarkData.efficient.avgTime}</Td>
+												</Tr>
+												<Tr>
+													<Td>Min Time</Td>
+													<Td isNumeric>{benchmarkData.naive.minTime}</Td>
+													<Td isNumeric>{benchmarkData.efficient.minTime}</Td>
+												</Tr>
+												<Tr>
+													<Td>Max Time</Td>
+													<Td isNumeric>{benchmarkData.naive.maxTime}</Td>
+													<Td isNumeric>{benchmarkData.efficient.maxTime}</Td>
+												</Tr>
+												<Tr>
+													<Td>STD Dev time</Td>
+													<Td isNumeric>{benchmarkData.naive.stdDevTime}</Td>
+													<Td isNumeric>{benchmarkData.efficient.stdDevTime}</Td>
+												</Tr>
+												<Tr>
+													<Td>Average CPU Usage</Td>
+													<Td isNumeric>{benchmarkData.naive.avgCpuUsage}</Td>
+													<Td isNumeric>{benchmarkData.efficient.avgCpuUsage}</Td>
+												</Tr>
+												<Tr>
+													<Td>Max CPU Usage</Td>
+													<Td isNumeric>{benchmarkData.naive.maxCpuUsage}</Td>
+													<Td isNumeric>{benchmarkData.efficient.maxCpuUsage}</Td>
+												</Tr>
+												<Tr>
+													<Td>Complexity</Td>
+													<Td isNumeric>{benchmarkData.naive.complexity}</Td>
+													<Td isNumeric>{benchmarkData.efficient.complexity}</Td>
+												</Tr>
+											</Tbody>
+										</Table>
+									</TableContainer>}
 							</TabPanel>
 						</TabPanels>
 					</Tabs>
