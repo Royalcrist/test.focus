@@ -22,6 +22,9 @@ RUN pip install pipenv && pipenv install --system --deploy --ignore-pipfile && a
 # Copy the current directory contents into the container at /app
 COPY . /app
 
+# Run the tests before deploying the application
+RUN python manage.py test
+
 # Make port 8000 available to the world outside this container
 EXPOSE 8000
 
